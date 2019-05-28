@@ -3,11 +3,19 @@ $(document).ready( function() {
 
   keyNotes.forEach( k => {
     $(`.${k}`).click(function() {
+      if ($(`#${k}Audio`)[0].paused) {
         $(`#${k}Audio`)[0].play();
+      } else {
+        $(`#${k}Audio`)[0].currentTime = 0;
+      }
     })
     $('body').keypress((event) => {
       if (event.key === `${k}`) {
-      $(`#${k}Audio`)[0].play();
+        if ($(`#${k}Audio`)[0].paused) {
+          $(`#${k}Audio`)[0].play();
+        } else {
+          $(`#${k}Audio`)[0].currentTime = 0;
+        }
       }
     })
   })
